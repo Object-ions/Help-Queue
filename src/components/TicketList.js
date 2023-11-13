@@ -1,5 +1,5 @@
 import React from "react";
-import Ticket from "./Ticket";
+import Ticket from "./Ticket.js";
 
 const mainTicketList = [
   {
@@ -19,16 +19,16 @@ const mainTicketList = [
   }
 ];
 
-function TicketList() {
+
+function TicketList(props){
   return (
     <React.Fragment>
-      <hr />
+      <hr/>
       {mainTicketList.map((ticket, index) =>
-      <Ticket
-        location={ticket.names}
-        names={ticket.location}
-        issue={ticket.issue}
-        key={index }/>
+        <Ticket names={ticket.names}
+          location={ticket.location}
+          issue={ticket.issue}
+          key={index}/>
       )}
     </React.Fragment>
   );
