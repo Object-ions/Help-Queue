@@ -1,13 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { v4 } from 'uuid';
 
 function NewTicketForm(props){
 
   function handleNewTicketFormSubmission(e) {
     e.preventDefault();
-    console.log(e.target.names.value)
-    console.log(e.target.location.value)
-    console.log(e.target.issue.value)
+    props.onNewTicketCreation({
+      names: e.target.names.value,
+      loction: e.target.loction.value,
+      issue: e.target.issue.value,
+      id: v4()
+    });
   }
 
   return (
