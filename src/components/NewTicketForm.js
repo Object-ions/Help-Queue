@@ -8,7 +8,7 @@ function NewTicketForm(props){
     e.preventDefault();
     props.onNewTicketCreation({
       names: e.target.names.value,
-      loction: e.target.loction.value,
+      location: e.target.location.value,
       issue: e.target.issue.value,
       id: v4()
     });
