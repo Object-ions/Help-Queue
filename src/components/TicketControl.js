@@ -5,6 +5,7 @@ import EditTicketForm from "./EditTicketForm";
 import TicketDetail from "./TicketDetail";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { ThemeContext } from "../context/theme-context";
 
 class TicketControl extends React.Component {
   constructor(props) {
@@ -86,6 +87,13 @@ class TicketControl extends React.Component {
   };
 
   render() {
+    let theme = this.context;
+
+    const buttonStyles = {
+      backgroundColor: theme.buttonBackground,
+      color: theme.textColor,
+    };
+
     let currentlyVisibleState = null;
     let buttonText = null;
     if (this.state.editing) {
@@ -122,20 +130,16 @@ class TicketControl extends React.Component {
     return (
       <React.Fragment>
         {currentlyVisibleState}
-        <button onClick={this.handleClick}>{buttonText}</button>
+        {/* We've added a new style attribute to the button below. */}
+        <button style={buttonStyles} onClick={this.handleClick}>
+          {buttonText}
+        </button>
       </React.Fragment>
     );
   }
 }
-TicketControl.propTypes = {
-  mainTicketList: PropTypes.object,
-  formVisibleOnPage: PropTypes.bool,
-};
-const mapStateToProps = (state) => {
-  return {
-    mainTicketList: state.mainTicketList,
-    formVisibleOnPage: state.formVisibleOnPage,
-  };
-};
-TicketControl = connect(mapStateToProps)(TicketControl);
+
+// We've created a contextType property and set it to ThemeContext.
+TicketControl.contextType = ThemeContext;
+
 export default TicketControl;
